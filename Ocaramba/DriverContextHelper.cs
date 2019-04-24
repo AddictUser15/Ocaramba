@@ -1,5 +1,5 @@
-// <copyright file="DriverContextHelper.cs" company="Objectivity Bespoke Software Specialists">
-// Copyright (c) Objectivity Bespoke Software Specialists. All rights reserved.
+// <copyright file="DriverContextHelper.cs" company="Team">
+// Copyright (c) Team. All rights reserved.
 // </copyright>
 // <license>
 //     The MIT License (MIT)
@@ -113,10 +113,10 @@ namespace Ocaramba
         public string[] TakeAndSaveScreenshot()
         {
             List<string> filePaths = new List<string>();
-            if (BaseConfiguration.FullDesktopScreenShotEnabled)
-            {
-                filePaths.Add(TakeScreenShot.Save(TakeScreenShot.DoIt(), ImageFormat.Png, this.ScreenShotFolder, this.TestTitle));
-            }
+            //if (BaseConfiguration.FullDesktopScreenShotEnabled)
+            //{
+            //    filePaths.Add(TakeScreenShot.Save(TakeScreenShot.DoIt(), ImageFormat.Png, this.ScreenShotFolder, this.TestTitle));
+            //}
 
             if (BaseConfiguration.SeleniumScreenShotEnabled)
             {

@@ -4,8 +4,8 @@
     <id>Ocaramba.xUnit</id>
     <version>$version$</version>
     <title>Ocaramba.xUnit</title>
-    <authors>Objectivity Bespoke Software Specialists</authors>
-    <owners>Objectivity Bespoke Software Specialists</owners>
+    <authors>Team</authors>
+    <owners>Team</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/ObjectivityLtd/Test.Automation</projectUrl>
 	<iconUrl>https://github.com/ObjectivityLtd/Ocaramba/wiki/images/Objectivity_logo_avatar32.png</iconUrl>

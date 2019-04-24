@@ -1,5 +1,5 @@
-﻿// <copyright file="KendoGrid.cs" company="Objectivity Bespoke Software Specialists">
-// Copyright (c) Objectivity Bespoke Software Specialists. All rights reserved.
+﻿// <copyright file="KendoGrid.cs" company="Team">
+// Copyright (c) Team. All rights reserved.
 // </copyright>
 // <license>
 //     The MIT License (MIT)

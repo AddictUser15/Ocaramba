@@ -1,5 +1,5 @@
-﻿// <copyright file="AssemblyInfo.cs" company="Objectivity Bespoke Software Specialists">
-// Copyright (c) Objectivity Bespoke Software Specialists. All rights reserved.
+﻿// <copyright file="AssemblyInfo.cs" company="Team">
+// Copyright (c) Team. All rights reserved.
 // </copyright>
 // <license>
 //     The MIT License (MIT)
@@ -35,7 +35,7 @@ using NUnit.Framework;
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: Parallelizable(ParallelScope.Fixtures)]
+[assembly: Parallelizable(ParallelScope.All)]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from

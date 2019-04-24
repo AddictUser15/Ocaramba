@@ -1,27 +1,13 @@
-﻿// <copyright file="ProjectTestBase.cs" company="Objectivity Bespoke Software Specialists">
-// Copyright (c) Objectivity Bespoke Software Specialists. All rights reserved.
+﻿// <copyright file="ProjectTestBase.cs" company="Team">
+// Copyright (c) Team. All rights reserved.
 // </copyright>
-// <license>
-//     The MIT License (MIT)
-//     Permission is hereby granted, free of charge, to any person obtaining a copy
-//     of this software and associated documentation files (the "Software"), to deal
-//     in the Software without restriction, including without limitation the rights
-//     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//     copies of the Software, and to permit persons to whom the Software is
-//     furnished to do so, subject to the following conditions:
-//     The above copyright notice and this permission notice shall be included in all
-//     copies or substantial portions of the Software.
-//     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//     SOFTWARE.
-// </license>
 
 namespace Ocaramba.Tests.NUnit
 {
+    using System;
+    using System.IO;
+    using AventStack.ExtentReports;
+    using AventStack.ExtentReports.Reporter;
     using global::NUnit.Framework;
     using global::NUnit.Framework.Interfaces;
     using Ocaramba;
@@ -34,6 +20,9 @@ namespace Ocaramba.Tests.NUnit
     public class ProjectTestBase : TestBase
     {
         private readonly DriverContext driverContext = new DriverContext();
+        private ExtentHtmlReporter htmlReporter;
+        private ExtentReports extent;
+        private ExtentTest test;
 
         /// <summary>
         /// Gets or sets logger instance for driver
@@ -62,14 +51,30 @@ namespace Ocaramba.Tests.NUnit
             }
         }
 
+        protected ExtentTest Test
+        {
+            get
+            {
+                return this.test;
+            }
+
+            set
+            {
+                this.test = value;
+            }
+        }
+
         /// <summary>
         /// Before the class.
         /// </summary>
         [OneTimeSetUp]
         public void BeforeClass()
         {
+            this.htmlReporter = new ExtentHtmlReporter("D:\\Study\\test.html");
             this.DriverContext.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
             this.DriverContext.Start();
+            this.extent = new ExtentReports();
+            this.extent.AttachReporter(this.htmlReporter);
         }
 
         /// <summary>
@@ -83,6 +88,7 @@ namespace Ocaramba.Tests.NUnit
             PrintPerformanceResultsHelper.PrintAverageDurationMillisecondsInTeamcity(this.DriverContext.PerformanceMeasures);
             PrintPerformanceResultsHelper.PrintPercentiles90DurationMillisecondsinTeamcity(this.DriverContext.PerformanceMeasures);
             this.DriverContext.Stop();
+            this.extent.Flush();
         }
 
         /// <summary>
@@ -92,6 +98,7 @@ namespace Ocaramba.Tests.NUnit
         public void BeforeTest()
         {
             this.DriverContext.TestTitle = TestContext.CurrentContext.Test.Name;
+            this.test = this.extent.CreateTest(TestContext.CurrentContext.Test.Name);
             this.LogTest.LogTestStarting(this.driverContext);
         }
 
@@ -108,12 +115,12 @@ namespace Ocaramba.Tests.NUnit
             var javaScriptErrors = this.DriverContext.LogJavaScriptErrors();
             if (this.IsVerifyFailedAndClearMessages(this.driverContext) && TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Failed)
             {
-                Assert.Fail();
+                this.test.Fail("errors found. See the logs for details");
             }
 
             if (javaScriptErrors)
             {
-                Assert.Fail("JavaScript errors found. See the logs for details");
+                this.test.Fail("JavaScript errors found. See the logs for details");
             }
         }
 

@@ -1,5 +1,5 @@
-﻿// <copyright file="ProjectTestBase.cs" company="Objectivity Bespoke Software Specialists">
-// Copyright (c) Objectivity Bespoke Software Specialists. All rights reserved.
+﻿// <copyright file="ProjectTestBase.cs" company="Team">
+// Copyright (c) Team. All rights reserved.
 // </copyright>
 // <license>
 //     The MIT License (MIT)

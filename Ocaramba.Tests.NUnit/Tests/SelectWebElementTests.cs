@@ -1,5 +1,5 @@
-﻿// <copyright file="SelectWebElementTests.cs" company="Objectivity Bespoke Software Specialists">
-// Copyright (c) Objectivity Bespoke Software Specialists. All rights reserved.
+﻿// <copyright file="SelectWebElementTests.cs" company="Team">
+// Copyright (c) Team. All rights reserved.
 // </copyright>
 
 namespace Ocaramba.Tests.NUnit.Tests
