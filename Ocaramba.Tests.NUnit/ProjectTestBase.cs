@@ -70,7 +70,7 @@ namespace Ocaramba.Tests.NUnit
         [OneTimeSetUp]
         public void BeforeClass()
         {
-            this.htmlReporter = new ExtentHtmlReporter("C:\\Builds\\test.html");
+            this.htmlReporter = new ExtentHtmlReporter("C:\\Builds\\Report\\test.html");
             this.DriverContext.CurrentDirectory = TestContext.CurrentContext.TestDirectory;
             this.DriverContext.Start();
             this.extent = new ExtentReports();
